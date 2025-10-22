@@ -3,6 +3,7 @@
 Este proyecto es una pre-entrega de análisis de datos que cubre el proceso completo de ingesta, limpieza, procesamiento y análisis (ETL y EDA) de tres fuentes de datos de una empresa: Ventas, Clientes y Marketing.
 
 **Autora:** Jennifer Franco
+
 **Curso:** Data Analytics con Python - Talento Tech
 
 ---
