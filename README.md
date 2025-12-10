@@ -1,65 +1,65 @@
-# Proyecto de Análisis de Ventas, Clientes y Marketing
+# 📊 Análisis Integral de Rendimiento Comercial: Ventas, Clientes y Marketing
 
-Este proyecto es una pre-entrega de análisis de datos que cubre el proceso completo de ingesta, limpieza, procesamiento y análisis (ETL y EDA) de tres fuentes de datos de una empresa: Ventas, Clientes y Marketing.
+Este proyecto abarca el ciclo completo de un análisis de datos de retail (Ciencia de Datos aplicada), desde la ingesta de datos crudos hasta la generación de insights estratégicos de negocio. Se enfoca en la limpieza modular, validación estadística y visualización de datos para entender el comportamiento de productos y clientes.
 
 **Autora:** Jennifer Franco
-
 **Curso:** Data Analytics con Python - Talento Tech
+**Estado:** Entrega Final
 
 ---
 
-## Objetivo del Proyecto
+## 🎯 Objetivo del Proyecto
 
-El objetivo principal es limpiar y preparar los datos crudos para el análisis, con el fin de extraer insights accionables sobre el rendimiento de los productos, la composición de los clientes y la efectividad de las campañas de marketing.
+Transformar datos transaccionales desconectados en un **tablero de control estratégico**. El objetivo no es solo limpiar datos, sino validar hipótesis de negocio mediante estadística robusta (detección de outliers, correlaciones) para identificar productos estrella (`High Performers`) y optimizar la inversión en marketing.
 
-## 1. Conjuntos de Datos (Datasets)
+## 📂 1. Conjuntos de Datos (Datasets)
 
-Se utilizan tres archivos CSV como fuentes de datos:
+Se procesaron tres fuentes de información:
 
-* **`ventas.csv`**: Contiene el registro transaccional de las ventas, incluyendo `id_venta`, `producto`, `precio`, `cantidad` y `fecha_venta`.
-* **`clientes.csv`**: Contiene información demográfica de los clientes, como `id_cliente`, `nombre`, `edad`, `ciudad` e `ingresos`.
-* **`marketing.csv`**: Contiene datos sobre las campañas de marketing, detallando `id_campanha`, `producto`, `canal`, `costo` y fechas de la campaña.
+* **`ventas.csv`**: Registro transaccional (`id_venta`, `producto`, `precio`, `cantidad`, `fecha`).
+* **`clientes.csv`**: Perfil demográfico (`id_cliente`, `edad`, `ciudad`, `ingresos`).
+* **`marketing.csv`**: Inversión publicitaria (`costo`, `canal`, `campaña`).
 
-## 2. Metodología y Pasos del Análisis
+## ⚙️ 2. Metodología y Flujo de Trabajo
 
-El análisis se estructura en el notebook `preentrega-data-analytics.ipynb` y sigue los siguientes pasos:
- 
-### 1. Configuración y Carga
-* Importación de librerías (Pandas, Numpy).
-* Montaje de Google Drive y carga de los tres archivos CSV.
+El análisis se estructura modularmente en el notebook `Entrega_Final_Data_Analilytics_Franco.ipynb`, siguiendo un enfoque de **validación visual continua**:
 
-### 2. Análisis Exploratorio de Datos (EDA)
-* Revisión inicial de la estructura (`.shape`, `.info()`, `.head()`).
-* Identificación de tipos de datos incorrectos.
-* Análisis de valores nulos (`.isna().sum()`).
-* Detección de duplicados (filas exactas y por clave primaria).
+### 🔹 Etapa 1 y 2: Ingeniería y Calidad de Datos
+* **Limpieza Modular:** Implementación de funciones personalizadas (`limpiar_precio`, `limpiar_cantidad`) para eliminar caracteres no numéricos y normalizar tipos de datos.
+* **Feature Engineering:** Creación del KPI `ingreso_total` (Precio × Cantidad) para medir el impacto real en facturación.
+* **Segmentación Automática:** Aplicación de filtros de **Alto Rendimiento** basados en percentiles (Top 20% / Principio de Pareto) para aislar los productos más relevantes.
+* **Validación:** *Gráfico de Barras* (Ranking) para confirmar visualmente los líderes del mercado.
 
-### 3. Limpieza y Preprocesamiento
-* **Eliminación de duplicados** en el set de ventas.
-* **Normalización de texto**: Limpieza de espacios extra, caracteres invisibles y estandarización a formato Título.
-* **Corrección de Tipos de Datos**:
-    * Conversión de columnas de fecha (`fecha_venta`, `fecha_inicio`, `fecha_fin`) a formato `datetime`.
-    * Conversión de columnas numéricas (`precio`, `cantidad`) a formato numérico, eliminando símbolos (`$`) y gestionando nulos.
-* **Manejo de Nulos**: Eliminación de filas en `ventas` donde `precio` o `cantidad` eran nulos, ya que son inutilizables para el análisis de ingresos.
+### 🔹 Etapa 3: Análisis Estadístico y Exploratorio (EDA)
+* **Análisis Granular vs. Agregado:** Diferenciación entre métricas por *Producto* y por *Categoría* para evitar sesgos de agregación.
+* **Detección de Anomalías (Outliers):** Cálculo del **Rango Intercuartílico (IQR)** para identificar matemáticamente productos con ventas excepcionales.
+* **Visualización de Distribución:** Uso de *Boxplots* (Diagramas de Caja) para confirmar que los outliers detectados (ej. Lámparas, Auriculares) son casos de éxito y no errores.
+* **Correlación de Pearson:** Análisis de la relación Precio vs. Demanda, validado mediante *Scatter Plots* (Gráficos de Dispersión).
 
-### 4. Transformación y Análisis
-* **Ingeniería de Características**: Creación de la columna `ingreso_total` (`precio` * `cantidad`).
-* **Análisis de Productos**: Identificación de productos de alto rendimiento (aquellos por encima del percentil 80 de ingresos).
-* **Análisis de Categorías**: Agregación de ingresos, ventas promedio y conteo de transacciones por categoría.
-* **Análisis de Marketing (ROI)**: Integración de los datos de `ventas` y `marketing` para calcular la ganancia neta por producto (Ingresos Totales - Costo de Marketing).
+## 🧠 3. Síntesis de Resultados
 
-## 3. Tecnologías Utilizadas
+| Concepto Técnico | Aplicación en el Proyecto | Insight de Negocio |
+| :--- | :--- | :--- |
+| **Limpieza de Datos** | Funciones propias reutilizables | Base sólida para decisiones financieras reales. |
+| **Agregación** | Ranking de Categorías | Identificación instantánea de líderes (Tecnología y Decoración). |
+| **Estadística (IQR)** | Cálculo de Outliers | Diferenciación entre anomalía matemática y éxito de ventas. |
+| **EDA Visual** | Scatter Plot + Boxplot | Confirmación de que el mercado absorbe precios premium sin caer la demanda. |
 
-* **Lenguaje**: Python 3
-* **Librerías**: Pandas, Numpy
-* **Entorno**: Google Colab / Jupyter Notebook
+## 🛠️ 4. Tecnologías Utilizadas
 
-## 4. Cómo Ejecutar el Proyecto
+* **Lenguaje:** Python 3.
+* **Manipulación de Datos:** Pandas, NumPy.
+* **Visualización:** Matplotlib, Seaborn.
+* **Entorno:** Google Colab / Jupyter Notebook.
+
+## 🚀 5. Cómo Ejecutar el Proyecto
 
 1.  Clonar este repositorio.
-2.  Asegurarse de tener los datasets (`ventas.csv`, `clientes.csv`, `marketing.csv`) en la ruta especificada en el notebook (ej. `/content/drive/MyDrive/datasets/`).
-3.  Abrir el notebook (`/notebooks/preentrega-data-analytics.ipynb`) en Google Colab o un entorno Jupyter.
-4.  Ejecutar las celdas en orden.
-3.  Asegurarse de tener los datasets (`ventas.csv`, `clientes.csv`, `marketing.csv`) en la ruta especificada en el notebook (ej. `/content/drive/MyDrive/datasets/`).
+2.  Asegurarse de tener los datasets (`ventas.csv`, `clientes.csv`, `marketing.csv`) en la carpeta `/data` o en tu Google Drive.
+3.  Abrir el notebook `Franco.ipynb`.
+4.  Ejecutar las celdas secuencialmente. Las visualizaciones se generarán automáticamente en cada etapa del análisis para validar los resultados.
+
+---
+*Proyecto realizado como parte de la certificación en Data Analytics - 2025.*
 4.  Abrir el notebook (`/notebooks/analisis_ventas.ipynb`) en Google Colab o un entorno Jupyter.
 5.  Ejecutar las celdas en orden.
